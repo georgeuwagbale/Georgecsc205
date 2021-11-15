@@ -4,24 +4,12 @@
 #include <stdio.h>
 
 int main(){
-	int age;
-	char experienced;
+	int value[20];
+	size = 20;
 
-	printf("Enter age: ");
-	scanf("%3i", &age);
-	fflush(stdin);
+	while ( size >= 0 && value == \n){
 
-	printf("Experienced? (Y/N): ");
-	scanf("%c", &experienced);
-	fflush(stdin);
-	
-	if ( experienced == 'y' || experienced == 'Y' ){
-		if ( age > 40) printf("Salary = N560,000.");
-		else if ( age >= 30 && age < 40 ) printf("Salary = N480,000");
-		else if ( age < 28 ) printf("Salary = N300,000");
 	}
-	else if( experienced == 'n' || experienced == 'N'){
-		printf("Salary = N100,000.");
-	}
+	printf("%d", sizeof(value));
 	return 0;
 }
