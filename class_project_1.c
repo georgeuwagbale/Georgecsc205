@@ -10,27 +10,35 @@ void* sims();
 int main(){
 	// Creation of thread ID
 	pthread_t ID;
-	int ref;
+	int ref, amount_of_student;
 	
-	ref = pthread_create(&ID, NULL, &sims, NULL);
-	pthread_join(ID, NULL);
+	printf("How many students: ");
+	scanf("%d", &amount_of_student);
+	
+	for (int i = 0; i < amount_of_student; i++){
+		ref = pthread_create(&ID, NULL, &sims, NULL);
+		pthread_join(ID, NULL);
+	}
+
 	return 0;
 }
 
 
 void* sims(){
+	int amount_of_student;
+	int me;
+	me = pthread_self();
+		
 	char student_name[100];
-	long student_matric_number;
+	int student_matric_number;	
 	
 	printf("Enter your name: ");
 	scanf("%99s", student_name);
 	
 	printf("Enter matric number: ");
-	scanf("%11ld", &student_matric_number);
+	scanf("%d", &student_matric_number);
+	puts("");
 	
-
-	int me;
-	me = pthread_self();
+ 	printf("Thread ID: %d;\nStudent Name: %s;\nMatric Number: %d\n\n", me, student_name, student_matric_number);
 	
-	printf("Thread ID: %d;\nStudent Name: %s;\nMatric Number: %ld;\n", me, student_name, student_matric_number);
 }
