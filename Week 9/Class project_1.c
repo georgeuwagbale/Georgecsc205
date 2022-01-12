@@ -36,7 +36,7 @@ int main(){
         //puts(" ");
     }
 
-    printf("Enter values for Y\n")
+    printf("Enter values for Y\n");
     for (int i=0; i<row; i++){
         for (int j=0; j<col; j++){
             printf(": ");
