@@ -5,6 +5,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+struct employee_profile{
+    char first_name[50];
+    char last_name[50];
+    int years_of_experience;
+}*ptr, *m;
+struct employee_profile * max(struct employee_profile *a, struct employee_profile *b);
+
+
 int main(){
     int amount_of_applicants, n;
     char val;
@@ -12,12 +20,6 @@ int main(){
     //int years_of_experience;
 
 
-    struct employee_profile{
-        char first_name[50];
-        char last_name[50];
-        int years_of_experience;
-    };
-    struct employee_profile *ptr, *m;
     printf("Amount of applicants being interviewed: ");
     scanf("%2d", &amount_of_applicants);
 
@@ -34,20 +36,25 @@ int main(){
             scanf("%d", &(ptr + i)->years_of_experience);
             puts("");
         }
-        m = ptr+0;
-        printf("%d", (m+2)->years_of_experience);
-        for (int i=0; i<amount_of_applicants; i++){
-            for (int j=0; j<amount_of_applicants; j++){
-                if (((ptr + i)->years_of_experience) > ((ptr + j)->years_of_experience)){
-                    ptr = (ptr + i);
-                }
-                else if( ((ptr + i)->years_of_experience) < ((ptr + j)->years_of_experience) ){
-                    ptr = (ptr + j);
-                }
-            }
+
+        m = (ptr + 0);
+        for (int i=0; i<amount_of_applicants-1; i++){
+            // printf("%d; %d\n", r, j);
+            m = max( m,(ptr + (i+1)));
+            // printf("%d\n", r);
         }
 
-        printf("Highest experience: %s  %s\n", (m+2)->first_name, ptr->last_name);
+        printf("Applicant with the highest experience: %s %s \n",m->first_name,m->last_name);
+        printf("Experience in years: %d", m->years_of_experience);
     }
+
     return 0;
 }
+
+struct employee_profile * max(struct employee_profile *a, struct employee_profile *b){
+    struct employee_profile *c = a;
+    if (a->years_of_experience > b->years_of_experience) return a;
+    else if( a->years_of_experience < b->years_of_experience) return b;
+    else return c;
+}
+
